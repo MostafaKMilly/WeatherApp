@@ -14,6 +14,11 @@ const theme = createTheme({
       light: "#748da1",
       dark: "#1c3647",
     },
+    info: {
+      main: "#334257",
+      light: "#5e6d84",
+      dark: "#0a1c2e",
+    },
   },
   typography: {
     fontFamily: "Cairo",
