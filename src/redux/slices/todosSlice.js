@@ -20,36 +20,52 @@ export const todosSlice = createSlice({
       state.isLoading = false;
       state.errMess = action.payload;
     },
-    addTodo: (state, action) => {
-      const id =
-        state.items.length === 0 ? 1 : state.items[state.items.length - 1] + 1;
-      state.items.push({
-        ...action.payload,
-        id,
-        checked: action.payload.checked === "true",
-        createdAt: new Date().toISOString().split("T")[0],
-        finshedAt:
-          action.payload.checked === "true"
-            ? new Date().toISOString().split("T")[0]
-            : undefined,
-      });
+    addTodo: {
+      reducer: (state, action) => {
+        const id =
+          state.items.length === 0
+            ? 1
+            : state.items[state.items.length - 1] + 1;
+
+        state.items.push({ ...action.payload, id });
+      },
+      prepare: (data) => {
+        return {
+          payload: {
+            ...data,
+            checked: data.checked === "true",
+            createdAt: new Date().toISOString().split("T")[0],
+            finshedAt:
+              data.checked === "true"
+                ? new Date().toISOString().split("T")[0]
+                : undefined,
+          },
+        };
+      },
     },
-    editTodo: (state, action) => {
-      const id = state.items.findIndex((item) => item.id === action.payload.id);
-      for (let i in action.payload) {
-        if (action.payload[i] === undefined) {
-          delete action.payload[i];
-        }
-      }
-      state.items[id] = {
-        ...state.items[id],
-        ...action.payload,
-        checked: action.payload.checked === "true",
-        finshedAt:
-          action.payload.checked === "true"
-            ? new Date().toISOString().split("T")[0]
-            : undefined,
-      };
+
+    editTodo: {
+      reducer: (state, action) => {
+        const id = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        state.items[id] = {
+          ...state.items[id],
+          ...action.payload,
+        };
+      },
+      prepare: (data) => {
+        return {
+          payload: {
+            ...data,
+            checked: data.checked === "true",
+            finshedAt:
+              data.checked === "true"
+                ? new Date().toISOString().split("T")[0]
+                : undefined,
+          },
+        };
+      },
     },
     deleteTodo: (state, action) => {
       state.items = state.items.filter((item) => item.id !== action.payload);

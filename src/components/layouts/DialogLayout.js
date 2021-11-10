@@ -53,6 +53,11 @@ function DialogLayout(props) {
   };
 
   const onSubmit = (data) => {
+    for (let i in data) {
+      if (data[i] === undefined) {
+        delete data[i];
+      }
+    }
     dispatch(props.handleActitvty({ ...data, id: props.todoId }));
     handleClose();
   };

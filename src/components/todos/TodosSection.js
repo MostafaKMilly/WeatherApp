@@ -12,11 +12,11 @@ import TodosList from "./TodosList";
 function TodosSection(props) {
   const [addTodoDialogIsOpen, setAddTodoDialogIsOpen] = React.useState(false);
   const [selectedTodo, setSelectedTodo] = useState();
+  const [editTodoDialogIsOpen, setEditTodoDialogIsOpen] = useState(false);
   let todos = useSelector(selectAllTodos);
   let archives = useSelector((state) => state.todos.archives);
   let showArchives = useSelector((state) => state.global.showArchives);
 
-  const [editTodoDialogIsOpen, setEditTodoDialogIsOpen] = useState(false);
   return (
     <>
       <Box mt={4}>
