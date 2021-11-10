@@ -25,7 +25,7 @@ export const todosSlice = createSlice({
         const id =
           state.items.length === 0
             ? 1
-            : state.items[state.items.length - 1] + 1;
+            : state.items[state.items.length - 1].id + 1;
 
         state.items.push({ ...action.payload, id });
       },
