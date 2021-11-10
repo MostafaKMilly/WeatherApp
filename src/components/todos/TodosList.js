@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Archive, Check, Clear, Delete, Edit } from "@mui/icons-material";
 import {
   IconButton,
@@ -14,12 +15,9 @@ import {
   archiveTodo,
   deleteTodo,
   fetchTodos,
-  selectAllTodos,
 } from "../../redux/slices/todosSlice";
 
 function TodosList(props) {
-  const showArchives = useSelector((state) => state.global.showArchives);
-  let archives = useSelector((state) => state.todos.archives);
   const isLoading = useSelector((state) => state.todos.isLoading);
   const dispatch = useDispatch();
   useEffect(() => {

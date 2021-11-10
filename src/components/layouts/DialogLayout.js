@@ -11,7 +11,6 @@ import { styled, Box } from "@mui/system";
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -55,7 +54,6 @@ function DialogLayout(props) {
 
   const onSubmit = (data) => {
     dispatch(props.handleActitvty({ ...data, id: props.todoId }));
-    console.log(data, props.todoId);
     handleClose();
   };
 

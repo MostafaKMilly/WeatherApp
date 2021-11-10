@@ -1,5 +1,5 @@
 import { Cloud, LocationOn, WbSunny } from "@mui/icons-material";
-import { Button, Container, Grid, Paper, Typography } from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import useWeather from "../../hooks/useWeather";
@@ -12,7 +12,6 @@ function Header(props) {
   if (errMess) {
     return <Typography>{errMess}</Typography>;
   }
-  console.log(weather);
   return (
     <Box
       component={Paper}
