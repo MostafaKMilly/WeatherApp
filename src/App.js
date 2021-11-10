@@ -1,11 +1,14 @@
 import { ThemeProvider } from "@emotion/react";
 import React from "react";
 import Layout from "./components/layouts/layout";
-import theme from "./theme";
+import getTheme from "./theme";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from "./components/pages/Home";
+import { useSelector } from "react-redux";
 
 function App() {
+  const darkMode = useSelector((state) => state.global.darkMode);
+  const theme = getTheme(darkMode);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
