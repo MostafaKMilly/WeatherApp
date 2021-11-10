@@ -49,7 +49,7 @@ const MUISwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 function CustomSwitch(props) {
-  return <MUISwitch sx={{ m: 1 }} />;
+  return <MUISwitch sx={{ m: 1 }} {...props} />;
 }
 
 export default CustomSwitch;

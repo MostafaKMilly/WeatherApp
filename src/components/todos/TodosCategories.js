@@ -1,4 +1,5 @@
-import { Archive, FormatListBulleted, Unarchive } from "@mui/icons-material";
+import { useTheme } from "@emotion/react";
+import { Archive, FormatListBulleted } from "@mui/icons-material";
 import {
   List,
   ListItem,
@@ -6,32 +7,49 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { Box, styled } from "@mui/system";
+import { Box } from "@mui/system";
 import React from "react";
-
-const CustomListItemButton = styled(ListItemButton)(({ theme }) => ({
-  borderLeft: `2px solid ${theme.palette.primary.main}`,
-}));
+import { useDispatch, useSelector } from "react-redux";
+import { hideArchives, showArchives } from "../../redux/slices/globalSlice";
 
 function TodosCategories(props) {
+  const isShowArchives = useSelector((state) => state.global.showArchives);
+  const theme = useTheme();
+  const dispatch = useDispatch();
   return (
     <Box>
       <List>
         <ListItem dense>
-          <CustomListItemButton>
+          <ListItemButton
+            sx={{
+              borderLeft: !isShowArchives
+                ? `2px solid ${theme.palette.primary.main}`
+                : "",
+            }}
+            onClick={() => dispatch(hideArchives())}
+          >
             <ListItemIcon>
-              <FormatListBulleted color="primary" />
+              <FormatListBulleted
+                color={!isShowArchives ? "primary" : "inherit"}
+              />
             </ListItemIcon>
             <ListItemText>todos</ListItemText>
-          </CustomListItemButton>
+          </ListItemButton>
         </ListItem>
         <ListItem dense>
-          <CustomListItemButton>
+          <ListItemButton
+            sx={{
+              borderLeft: isShowArchives
+                ? `2px solid ${theme.palette.primary.main}`
+                : "",
+            }}
+            onClick={() => dispatch(showArchives())}
+          >
             <ListItemIcon>
-              <Archive />
+              <Archive color={isShowArchives ? "primary" : "inherit"} />
             </ListItemIcon>
             <ListItemText>Archived</ListItemText>
-          </CustomListItemButton>
+          </ListItemButton>
         </ListItem>
       </List>
     </Box>
