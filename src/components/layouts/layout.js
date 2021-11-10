@@ -8,13 +8,16 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleMode } from "../../redux/slices/globalSlice";
 import CustomSwitch from "../UI/CustomSwitch";
 
 function Layout(props) {
+  const dispatch = useDispatch();
   return (
     <Box>
       <CssBaseline />
-      <AppBar color="default" position="fixed" elevation={0}>
+      <AppBar color="default" enableColorOnDark position="fixed" elevation={0}>
         <Toolbar
           component={Container}
           maxWidth="lg"
@@ -27,7 +30,7 @@ function Layout(props) {
             <WbSunny color="primary" fontSize="large" />
           </Box>
           <Box position="absolute" left={0}>
-            <CustomSwitch />
+            <CustomSwitch onChange={() => dispatch(toggleMode())} />
           </Box>
         </Toolbar>
       </AppBar>
