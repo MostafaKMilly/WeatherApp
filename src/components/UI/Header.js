@@ -2,7 +2,7 @@ import { Cloud, LocationOn, WbSunny } from "@mui/icons-material";
 import { Button, Container, Grid, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import useWeather from "../hooks/useWeather";
+import useWeather from "../../hooks/useWeather";
 
 function Header(props) {
   const { weather, isLoading: weatherIsLoading, errMess } = useWeather();
@@ -14,7 +14,7 @@ function Header(props) {
   }
   console.log(weather);
   return (
-    <Container maxWidth={"md"}>
+    <Container>
       <Box
         component={Paper}
         sx={{ backgroundColor: "secondary.light", mt: 4, p: 5.5 }}

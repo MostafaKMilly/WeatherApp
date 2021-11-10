@@ -21,7 +21,7 @@ function Layout(props) {
           sx={{ justifyContent: "center" }}
         >
           <Box display="contents">
-            <Typography variant="h4" fontWeight="600" mr={1}>
+            <Typography component="h5" variant="h4" fontWeight="600" mr={1}>
               Weather App
             </Typography>
             <WbSunny color="primary" fontSize="large" />
@@ -37,7 +37,7 @@ function Layout(props) {
         }}
       >
         <Toolbar></Toolbar>
-        <Container maxWidth="lg">{props.children}</Container>
+        <Container maxWidth="md">{props.children}</Container>
       </Box>
     </Box>
   );
